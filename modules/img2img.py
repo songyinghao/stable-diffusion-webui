@@ -14,6 +14,7 @@ import modules.shared as shared
 import modules.processing as processing
 from modules.ui import plaintext_to_html
 import modules.scripts
+import logging
 
 
 def process_batch(p, input_dir, output_dir, inpaint_mask_dir, args, to_scale=False, scale_by=1.0, use_png_info=False, png_info_props=None, png_info_dir=None):
@@ -188,7 +189,9 @@ def img2img(id_task: str, mode: int, prompt: str, negative_prompt: str, prompt_s
     p.script_args = args
 
     p.user = request.username
-
+    
+    logging.info(f"\nimg2img: {prompt}")
+    
     if shared.cmd_opts.enable_console_prompts:
         print(f"\nimg2img: {prompt}", file=shared.progress_print_out)
 
